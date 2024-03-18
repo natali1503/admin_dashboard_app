@@ -2,40 +2,16 @@ import { Box, IconButton, Typography, useTheme } from "@mui/material";
 import { Menu, MenuItem, ProSidebar } from "react-pro-sidebar";
 // import { P } from "react-pro-sidebar";
 import { useState } from "react";
-import { Link } from "react-router-dom";
 import "react-pro-sidebar/dist/css/styles.css";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
-import PeopleOutlinedIcon from "@mui/icons-material/PeopleOutlined";
-import ContactsOutlinedIcon from "@mui/icons-material/ContactsOutlined";
-import ReceiptOutlinedIcon from "@mui/icons-material/ReceiptOutlined";
-import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
-import CalendarTodayOutlinedIcon from "@mui/icons-material/CalendarTodayOutlined";
-import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
-import BarChartOutlinedIcon from "@mui/icons-material/BarChartOutlined";
-import PieChartOutlineOutlinedIcon from "@mui/icons-material/PieChartOutlineOutlined";
-import TimelineOutlinedIcon from "@mui/icons-material/TimelineOutlined";
+
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
-import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
 
 import { tokens } from "../../theme";
-import SidebarIteam from "./SidebarIteam";
+import SidebarItem, { Item } from "./SidebarItem";
 import menuData from "../../data/menuData/MenuData";
-
-const Iteam = ({ title, to, icon, selected, setSelected }) => {
-  const theme = useTheme();
-  const colors = tokens(theme.palette.mode);
-  return (
-    <MenuItem
-      active={selected === title}
-      style={{ color: colors.grey[100] }}
-      onClick={() => setSelected(title)}
-      icon={icon}
-    >
-      <Typography>{title}</Typography>
-      <Link to={to} />
-    </MenuItem>
-  );
-};
+import menuCharts from "../../data/menuData/MenuCharts";
+import menuPages from "../../data/menuData/MenuPages";
 
 function Sidebar() {
   const theme = useTheme();
@@ -106,29 +82,31 @@ function Sidebar() {
           )}
 
           <Box paddingLeft={isCollapsed ? undefined : "10%"}>
-            <Iteam
+            <Item
               title="Dashboard"
               to="/"
               icon={<HomeOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
-
-            <SidebarIteam chapter={menuData.chapter} iteam={menuData.iteam} />
-            <Typography
-              variant="h6"
-              color={colors.grey[300]}
-              sx={{ m: "15px 0px 5px 20px" }}
-            >
-              Pages
-            </Typography>
-            <Typography
-              variant="h6"
-              color={colors.grey[300]}
-              sx={{ m: "15px 0px 5px 20px" }}
-            >
-              Charts
-            </Typography>
+            <SidebarItem
+              chapter={menuData.chapter}
+              item={menuData.item}
+              selected={selected}
+              setSelected={setSelected}
+            />
+            <SidebarItem
+              chapter={menuPages.chapter}
+              item={menuPages.item}
+              selected={selected}
+              setSelected={setSelected}
+            />
+            <SidebarItem
+              chapter={menuCharts.chapter}
+              item={menuCharts.item}
+              selected={selected}
+              setSelected={setSelected}
+            />
           </Box>
         </Menu>
       </ProSidebar>
