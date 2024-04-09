@@ -9,7 +9,6 @@ import SearchIcon from "@mui/icons-material/Search";
 import { useContext } from "react";
 
 import { ColorMode, ColorModeContext, tokens } from "../../theme";
-import { color } from "@mui/system";
 
 function Topbar() {
   const theme = useTheme();

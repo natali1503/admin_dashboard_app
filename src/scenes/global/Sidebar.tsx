@@ -1,11 +1,10 @@
 import { Box, IconButton, Typography, useTheme } from "@mui/material";
+import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
+import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import { Menu, MenuItem, ProSidebar } from "react-pro-sidebar";
 // import { P } from "react-pro-sidebar";
 import { useState } from "react";
 import "react-pro-sidebar/dist/css/styles.css";
-import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
-
-import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 
 import { tokens } from "../../theme";
 import SidebarItem, { Item } from "./SidebarItem";

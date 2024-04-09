@@ -321,24 +321,22 @@ export const mockBarData = [
   {
     country: "AD",
     "hot dog": 137,
-    "hot dogColor": "hsl(229, 70%, 50%)",
+
     burger: 96,
-    burgerColor: "hsl(296, 70%, 50%)",
+
     kebab: 72,
-    kebabColor: "hsl(97, 70%, 50%)",
+
     donut: 140,
-    donutColor: "hsl(340, 70%, 50%)",
   },
   {
     country: "AE",
     "hot dog": 55,
-    "hot dogColor": "hsl(307, 70%, 50%)",
+
     burger: 28,
-    burgerColor: "hsl(111, 70%, 50%)",
+
     kebab: 58,
-    kebabColor: "hsl(273, 70%, 50%)",
+
     donut: 29,
-    donutColor: "hsl(275, 70%, 50%)",
   },
   {
     country: "AF",
@@ -402,31 +400,26 @@ export const mockPieData = [
     id: "hack",
     label: "hack",
     value: 239,
-    color: "hsl(104, 70%, 50%)",
   },
   {
     id: "make",
     label: "make",
     value: 170,
-    color: "hsl(162, 70%, 50%)",
   },
   {
     id: "go",
     label: "go",
     value: 322,
-    color: "hsl(291, 70%, 50%)",
   },
   {
     id: "lisp",
     label: "lisp",
     value: 503,
-    color: "hsl(229, 70%, 50%)",
   },
   {
     id: "scala",
     label: "scala",
     value: 584,
-    color: "hsl(344, 70%, 50%)",
   },
 ];
 
@@ -487,7 +480,7 @@ export const mockLineData = [
   },
   {
     id: "france",
-    color: tokens("dark").blueAccent[300],
+    color: tokens("dark").blueAccent[400],
     data: [
       {
         x: "plane",
@@ -541,7 +534,7 @@ export const mockLineData = [
   },
   {
     id: "us",
-    color: tokens("dark").redAccent[200],
+    color: tokens("dark").redAccent[400],
     data: [
       {
         x: "plane",
