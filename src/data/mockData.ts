@@ -1,6 +1,16 @@
 import { tokens } from "../theme";
+import {
+  DataTeam,
+  DataContacts,
+  DataInvoices,
+  Transactions,
+  BarData,
+  PieData,
+  LineData,
+  GeographyData,
+} from "./interfaceMockData";
 
-export const mockDataTeam = [
+export const mockDataTeam: DataTeam[] = [
   {
     id: 1,
     name: "Jon Snow",
@@ -75,7 +85,7 @@ export const mockDataTeam = [
   },
 ];
 
-export const mockDataContacts = [
+export const mockDataContacts: DataContacts[] = [
   {
     id: 1,
     name: "Jon Snow",
@@ -199,7 +209,7 @@ export const mockDataContacts = [
   },
 ];
 
-export const mockDataInvoices = [
+export const mockDataInvoices: DataInvoices[] = [
   {
     id: 1,
     name: "Jon Snow",
@@ -266,7 +276,7 @@ export const mockDataInvoices = [
   },
 ];
 
-export const mockTransactions = [
+export const mockTransactions: Transactions[] = [
   {
     txId: "01e4dsa",
     user: "johndoe",
@@ -316,86 +326,73 @@ export const mockTransactions = [
     cost: "133.45",
   },
 ];
-
-export const mockBarData = [
+export const mockBarData: BarData[] = [
   {
     country: "AD",
-    "hot dog": 137,
-
-    burger: 96,
-
-    kebab: 72,
-
-    donut: 140,
+    items: new Map<string, number>([
+      ["hot dog", 137],
+      ["burger", 96],
+      ["kebab", 72],
+      ["donut", 140],
+    ]),
   },
   {
     country: "AE",
-    "hot dog": 55,
-
-    burger: 28,
-
-    kebab: 58,
-
-    donut: 29,
+    items: new Map<string, number>([
+      ["hot dog", 55],
+      ["burger", 28],
+      ["kebab", 58],
+      ["donut", 29],
+    ]),
   },
   {
     country: "AF",
-    "hot dog": 109,
-    "hot dogColor": "hsl(72, 70%, 50%)",
-    burger: 23,
-    burgerColor: "hsl(96, 70%, 50%)",
-    kebab: 34,
-    kebabColor: "hsl(106, 70%, 50%)",
-    donut: 152,
-    donutColor: "hsl(256, 70%, 50%)",
+    items: new Map<string, number>([
+      ["hot dog", 109],
+      ["burger", 23],
+      ["kebab", 34],
+      ["donut", 152],
+    ]),
   },
   {
     country: "AG",
-    "hot dog": 133,
-    "hot dogColor": "hsl(257, 70%, 50%)",
-    burger: 52,
-    burgerColor: "hsl(326, 70%, 50%)",
-    kebab: 43,
-    kebabColor: "hsl(110, 70%, 50%)",
-    donut: 83,
-    donutColor: "hsl(9, 70%, 50%)",
+    items: new Map<string, number>([
+      ["hot dog", 133],
+      ["burger", 52],
+      ["kebab", 43],
+      ["donut", 83],
+    ]),
   },
   {
     country: "AI",
-    "hot dog": 81,
-    "hot dogColor": "hsl(190, 70%, 50%)",
-    burger: 80,
-    burgerColor: "hsl(325, 70%, 50%)",
-    kebab: 112,
-    kebabColor: "hsl(54, 70%, 50%)",
-    donut: 35,
-    donutColor: "hsl(285, 70%, 50%)",
+    items: new Map<string, number>([
+      ["hot dog", 81],
+      ["burger", 80],
+      ["kebab", 112],
+      ["donut", 35],
+    ]),
   },
   {
     country: "AL",
-    "hot dog": 66,
-    "hot dogColor": "hsl(208, 70%, 50%)",
-    burger: 111,
-    burgerColor: "hsl(334, 70%, 50%)",
-    kebab: 167,
-    kebabColor: "hsl(182, 70%, 50%)",
-    donut: 18,
-    donutColor: "hsl(76, 70%, 50%)",
+    items: new Map<string, number>([
+      ["hot dog", 66],
+      ["burger", 111],
+      ["kebab", 167],
+      ["donut", 18],
+    ]),
   },
   {
     country: "AM",
-    "hot dog": 80,
-    "hot dogColor": "hsl(87, 70%, 50%)",
-    burger: 47,
-    burgerColor: "hsl(141, 70%, 50%)",
-    kebab: 158,
-    kebabColor: "hsl(224, 70%, 50%)",
-    donut: 49,
-    donutColor: "hsl(274, 70%, 50%)",
+    items: new Map<string, number>([
+      ["hot dog", 80],
+      ["burger", 47],
+      ["kebab", 158],
+      ["donut", 49],
+    ]),
   },
 ];
 
-export const mockPieData = [
+export const mockPieData: PieData[] = [
   {
     id: "hack",
     label: "hack",
@@ -423,7 +420,7 @@ export const mockPieData = [
   },
 ];
 
-export const mockLineData = [
+export const mockLineData: LineData[] = [
   {
     id: "japan",
     color: tokens("dark").greenAccent[500],
@@ -588,7 +585,7 @@ export const mockLineData = [
   },
 ];
 
-export const mockGeographyData = [
+export const mockGeographyData: GeographyData[] = [
   {
     id: "AFG",
     value: 520600,
