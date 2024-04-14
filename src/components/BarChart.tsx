@@ -1,31 +1,67 @@
 import { ResponsiveBar } from "@nivo/bar";
 import { tokens } from "../theme";
-import { useTheme } from "@mui/material";
+import { Stack, Typography, useTheme } from "@mui/material";
 import { mockBarData } from "../data/mockData.ts";
+import { BarData } from "../data/interfaceMockData.ts";
 
 export default function BarChart() {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const mode = theme.palette.mode;
-  const keys = ["hot dog", "burger", "sandwich", "kebab", "fries", "donut"];
-  const data = mockBarData.reduce((acc: [], el: object, i: number) => {
-    if (mode === "dark") {
-      for (let i = 0; i < keys.length; i++) {
-        const keyObj = `${keys[i]}Color`;
-        el[keyObj] = colors.blueAccent[`${i + 1}00`];
-      }
-    } else {
-      for (let i = 0; i < keys.length; i++) {
-        const keyObj = `${keys[i]}Color`;
-        el[keyObj] = colors.blueAccent[`${i + 1}00`];
-      }
+
+  const keys = mockBarData.reduce((acc: string[], el) => {
+    const arrKeys = Array.from(el.items.keys());
+    arrKeys.forEach((key: string) => {
+      if (!acc.includes(key)) acc.push(key);
+    });
+    return acc;
+  }, []);
+  const data: BarData[] = mockBarData.reduce((acc: BarData[], el) => {
+    const colorMap = new Map();
+    for (let i = 0; i < keys.length; i++) {
+      const colorNumber = +`${i + 1}00`;
+      const colorStr = colors.blueAccent[colorNumber];
+      el.colorItems = colorMap.set(`${keys[i]}Color`, colorStr);
     }
     acc.push(el);
     return acc;
   }, []);
+
+  const dataForBar = data.reduce(
+    (acc: { [key: string]: string | number }[], el) => {
+      const items = Object.fromEntries(el.items);
+      if (!el.colorItems) return acc;
+      const colorItems = Object.fromEntries(el.colorItems);
+      const obj = {
+        country: el.country,
+        ...items,
+        ...colorItems,
+      };
+      acc.push(obj);
+      return acc;
+    },
+    []
+  );
+  const dataForBarWithPercent = dataForBar.reduce(
+    (acc: { [key: string]: string | number }[], el) => {
+      const total = Object.entries(el).reduce((acc: number, el) => {
+        if (typeof el[1] === "number") {
+          acc = acc + el[1];
+        }
+        return acc;
+      }, 0);
+      const temp = { ...el };
+      for (const key of keys) {
+        temp[key] = Math.trunc((Number(temp[key]) / total) * 100);
+      }
+      acc.push(temp);
+      return acc;
+    },
+    []
+  );
   return (
     <ResponsiveBar
-      data={data}
+      data={dataForBarWithPercent}
       theme={{
         labels: {
           text: {
@@ -61,6 +97,9 @@ export default function BarChart() {
             fontSize: 14,
           },
         },
+      }}
+      valueFormat={(value) => {
+        return `${value}%`;
       }}
       animate={false}
       indexBy="country"
@@ -107,12 +146,40 @@ export default function BarChart() {
           ],
         },
       ]}
-      // valueFormat={{ colors }}
-      // ariaLabel="Nivo bar chart demo"
       barAriaLabel={(e) =>
         e.id + ": " + e.formattedValue + " in country: " + e.indexValue
       }
       labelTextColor={{ theme: "labels.text.fill" }}
+      tooltip={({ indexValue, id }) => {
+        const map = Object.values(mockBarData).filter(
+          (el) => el.country === indexValue
+        )[0].items;
+        const value = map.get(id.toString());
+        return (
+          <Stack
+            flexDirection={"row"}
+            gap={2}
+            sx={{ opacity: 0.9 }}
+            padding={1}
+            bgcolor={mode ? colors.grey[900] : colors.grey[100]}
+          >
+            <Typography
+              fontWeight={600}
+              color={
+                mode === "dark"
+                  ? colors.greenAccent[600]
+                  : colors.greenAccent[400]
+              }
+              variant="h5"
+            >
+              {id}
+            </Typography>
+            <Typography fontWeight={600} variant="h6">
+              {value}
+            </Typography>
+          </Stack>
+        );
+      }}
     />
   );
 }

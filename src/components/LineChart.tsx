@@ -7,6 +7,7 @@ import { tokens } from "../theme";
 export default function LineChart() {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
+  const mode = theme.palette.mode;
   return (
     <ResponsiveLine
       data={mockLineData}
@@ -51,6 +52,12 @@ export default function LineChart() {
           container: {
             color: colors.primary[500],
             fontSize: 12,
+          },
+        },
+        crosshair: {
+          line: {
+            stroke: ` ${mode === "dark" ? colors.grey[100] : colors.grey[100]}`,
+            strokeWidth: 2,
           },
         },
       }}
