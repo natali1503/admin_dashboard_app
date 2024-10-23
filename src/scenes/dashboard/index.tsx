@@ -5,9 +5,6 @@ import { StatBox } from "../../components/StatBox";
 import { dataForStatBox } from "../../data/dataForStatBox";
 
 function Dashboard() {
-  // const theme = useTheme();
-  // const colors = tokens(theme.palette.mode);
-
   return (
     <Box m="20px">
       <HeaderDashboard />
@@ -16,8 +13,8 @@ function Dashboard() {
         display="flex"
         flexDirection="row"
         justifyContent="space-around"
-        // flexBasis={0}
-        // flexGrow={1}
+        flexBasis={0}
+        flexGrow={1}
       >
         {dataForStatBox.map((data, i) => {
           return (
@@ -27,6 +24,7 @@ function Dashboard() {
               icon={data.getIcon()}
               value={data.getValue()}
               precent={data.getPrecent()}
+              precentDiff={data.getPrecentDiff()}
             />
           );
         })}

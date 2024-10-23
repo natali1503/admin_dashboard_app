@@ -1,8 +1,5 @@
 import PeopleOutlinedIcon from "@mui/icons-material/PeopleOutlined";
 export type Icon = ReturnType<typeof PeopleOutlinedIcon>;
-// type fn = () => {
-//   //
-// };
 
 export class MenuItem {
   title: string;

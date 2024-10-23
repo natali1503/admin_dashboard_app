@@ -1,7 +1,5 @@
-import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { CssBaseline, ThemeProvider } from "@mui/material";
-import { useState } from "react";
 
 import { ColorModeContext, useMode } from "./theme";
 import Topbar from "./scenes/global/Topbar";
@@ -13,13 +11,13 @@ import Invoices from "./scenes/invoices";
 import Form from "./scenes/form";
 import Line from "./scenes/line";
 import Pie from "./scenes/pie";
-// import FAQ from "./scenes/faq";
-// import Geography from "./scenes/geography";
+import FAQ from "./scenes/faq";
+import Geography from "./scenes/geography";
 import Calendar from "./scenes/calendar";
 import Bar from "./scenes/bar";
+
 function App() {
   const [theme, colorMode] = useMode();
-  const [isSidebar, setIsSidebar] = useState(true);
   return (
     <>
       <BrowserRouter>
@@ -40,10 +38,8 @@ function App() {
                   <Route path="/pie" element={<Pie />} />
                   <Route path="/bar" element={<Bar />} />
                   <Route path="/line" element={<Line />} />
-                  {/* 
                   <Route path="/faq" element={<FAQ />} />
                   <Route path="/geography" element={<Geography />} />
-                  */}
                 </Routes>
               </main>
             </div>
