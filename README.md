@@ -11,7 +11,7 @@
 
 Вдохновлено роликом [Build a COMPLETE React Admin Dashboard App](https://www.youtube.com/watch?v=wYpCWwD1oz0&ab_channel=EdRoh).
 
-[Демо]()
+[Демо](https://natali1503.github.io/admin_dashboard_app/)
 
 ## Технологии
 
