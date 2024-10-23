@@ -1,4 +1,4 @@
-import { DataGrid } from "@mui/x-data-grid";
+import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import { Box, Typography, useTheme } from "@mui/material";
 import AdminPanelSettingsOutlinedIcon from "@mui/icons-material/AdminPanelSettingsOutlined";
 import LockOpenOutlinedIcon from "@mui/icons-material/LockOpenOutlined";
@@ -14,7 +14,7 @@ export default function Team() {
   interface Row {
     access: string;
   }
-  const columns = [
+  const columns: GridColDef[] = [
     { field: "id", headerName: "ID" },
     {
       field: "name",

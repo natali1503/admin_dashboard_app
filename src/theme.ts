@@ -189,9 +189,7 @@ export const themeSettings = (mode: string): object => {
     },
   };
 };
-export const ColorModeContext = createContext({
-  // toggleColor: () => {},
-});
+export const ColorModeContext = createContext<ColorMode | null>(null);
 
 export type ColorMode = {
   toggleColorMode: () => void;

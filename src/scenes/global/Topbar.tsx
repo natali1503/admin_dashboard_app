@@ -8,12 +8,12 @@ import SearchIcon from "@mui/icons-material/Search";
 
 import { useContext } from "react";
 
-import { ColorMode, ColorModeContext, tokens } from "../../theme";
+import { ColorModeContext, tokens } from "../../theme";
 
 function Topbar() {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
-  const colorMode: ColorMode = useContext(ColorModeContext);
+  const colorMode = useContext(ColorModeContext);
   const mode = theme.palette.mode;
   return (
     <Box display="flex" justifyContent="space-between" p={2}>
@@ -24,7 +24,7 @@ function Topbar() {
         </IconButton>
       </Box>
       <Box display="flex">
-        <IconButton type="button" onClick={colorMode.toggleColorMode}>
+        <IconButton type="button" onClick={colorMode?.toggleColorMode}>
           {mode === "dark" ? (
             <DarkModeOutlinedIcon />
           ) : (
