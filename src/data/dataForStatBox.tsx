@@ -10,7 +10,8 @@ class StatBox {
     private title: string,
     private icon: Icon,
     private value: number,
-    private precent: number
+    private precent: number,
+    private precentDiff: number
   ) {}
   getTitle() {
     return this.title;
@@ -22,14 +23,29 @@ class StatBox {
     return this.value.toLocaleString();
   }
   getPrecent() {
-    if (this.precent > 0) return `+${this.precent}%`;
-    return `${this.precent}%`;
+    return this.precent;
+  }
+  getPrecentDiff() {
+    if (this.precentDiff > 0) return `+${this.precentDiff}%`;
+    return `${this.precentDiff}%`;
   }
 }
 
-const emails = new StatBox("Emails Sent", <EmailIcon />, 12361, 14);
+const emails = new StatBox("Emails Sent", <EmailIcon />, 12361, 14, 40);
 
-const sales = new StatBox("Sales Obtained", <PointOfSaleIcon />, 431225, 21);
-const clients = new StatBox("New Clients", <PersonAddIcon />, 32441, 5);
-const traffic = new StatBox("Traffic Received", <TrafficIcon />, 1325134, 43);
+const sales = new StatBox(
+  "Sales Obtained",
+  <PointOfSaleIcon />,
+  431225,
+  21,
+  57
+);
+const clients = new StatBox("New Clients", <PersonAddIcon />, 32441, 5, 83);
+const traffic = new StatBox(
+  "Traffic Received",
+  <TrafficIcon />,
+  1325134,
+  43,
+  37
+);
 export const dataForStatBox = [emails, sales, clients, traffic];
