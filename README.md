@@ -1,30 +1,57 @@
-# React + TypeScript + Vite
+# Оглавление
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+- [Admin dashboard](#Admin-dashboard)
+- [Технологии](#Технологии)
+- [Установка](#Установка)
+- [Функциональность](#Функциональность)
 
-Currently, two official plugins are available:
+# Admin dashboard
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Дашборды с визуализацией данных в формате таблиц и диаграмм.
 
-## Expanding the ESLint configuration
+Вдохновлено роликом [Build a COMPLETE React Admin Dashboard App](https://www.youtube.com/watch?v=wYpCWwD1oz0&ab_channel=EdRoh).
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+[Демо]()
 
-- Configure the top-level `parserOptions` property like this:
+## Технологии
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+- Приложение написано на TypeScript.
+- **React:** Используется для создания компонентной структуры приложения.
+- **CSS:** Используется MUI.
+- React Router.
+- Formik для работы с формой.
+- Nivo для создания диаграмм.
+- Fullcalendar для работы с календарем.
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## Установка
+
+1. Клонируйте репозиторий:
+
+   ```bash
+   git clone https://github.com/natali1503/admin_dashboard_app.git
+   ```
+
+2. Перейдите в каталог проекта:
+
+   ```bash
+   cd the-wild-oasis
+   ```
+
+3. Установите зависимости:
+
+   ```bash
+   npm install
+   ```
+
+4. Запустите приложение:
+
+   ```bash
+   npm run dev
+   ```
+
+## Функциональность
+
+Dashboard микродиаграммы с данными.
+Data отображение исходных данных в формате таблиц.
+Pages создание новых пользователей, интерактивный календарь, FAQ.
+Charts интерактивные диаграммы на основе данных.
