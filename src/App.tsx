@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { HashRouter, Route, Routes } from "react-router-dom";
 import { CssBaseline, ThemeProvider } from "@mui/material";
 
 import { ColorModeContext, useMode } from "./theme";
@@ -20,7 +20,7 @@ function App() {
   const [theme, colorMode] = useMode();
   return (
     <>
-      <BrowserRouter>
+      <HashRouter>
         <ColorModeContext.Provider value={colorMode}>
           <ThemeProvider theme={theme}>
             <CssBaseline />
@@ -45,7 +45,7 @@ function App() {
             </div>
           </ThemeProvider>
         </ColorModeContext.Provider>
-      </BrowserRouter>
+      </HashRouter>
     </>
   );
 }
