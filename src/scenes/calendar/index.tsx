@@ -21,19 +21,27 @@ import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
-import { formatDate } from "@fullcalendar/core/index.js";
+import {
+  DateSelectArg,
+  EventApi,
+  EventClickArg,
+  EventSourceInput,
+  formatDate,
+} from "@fullcalendar/core/index.js";
 import listPlugin from "@fullcalendar/list";
 
 import { Header } from "../../components/Header";
-import { colors, tokens } from "../../theme";
-// import { color } from "@mui/system";
+import { tokens } from "../../theme";
 
 export default function Calendar() {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
-  const [currentEvents, setCurrentEvents] = useState([]);
+  const [currentEvents, setCurrentEvents] = useState<EventApi[]>([]);
   const [isDeleteEvent, setIsDeleteEvent] = useState(false);
-  const [selectedEvent, setSelectedEvent] = useState({});
+  const [selectedEvent, setSelectedEvent] = useState<EventClickArg | null>(
+    null
+  );
+  const [selectedData, setSelectedData] = useState<DateSelectArg | null>(null);
   const [isCreateEvent, setIsCreateEvent] = useState(false);
   const CustomizedButton = styled(Button)`
     &:hover {
@@ -43,34 +51,36 @@ export default function Calendar() {
     color: ${colors.grey[100]};
   `;
 
-  function handleEventClick(selected) {
+  function handleEventClick(selected: EventClickArg) {
     if (isCreateEvent) return;
+
     setSelectedEvent(selected);
     setIsDeleteEvent((show) => !show);
   }
   function handleDeleteEvent() {
     selectedEvent?.event.remove();
-    setSelectedEvent({});
+    setSelectedEvent(null);
     setIsDeleteEvent((show) => !show);
   }
 
-  function handleDateClick(selected) {
+  function handleDateClick(selected: DateSelectArg) {
     if (isDeleteEvent) return;
-    setSelectedEvent(selected);
+    setSelectedData(selected);
     setIsCreateEvent((show) => !show);
   }
-  function handleCreateEvent(title) {
-    const calendarApi = selectedEvent?.view?.calendar;
+  function handleCreateEvent(title: string) {
+    const calendarApi = selectedData?.view?.calendar;
+    if (!calendarApi) return;
     calendarApi.unselect();
     if (title) {
       calendarApi.addEvent({
-        id: `${selectedEvent?.dateStr}-${title}`,
+        id: `${selectedData?.startStr}-${title}`,
         title,
-        start: selectedEvent?.startStr,
-        end: selectedEvent?.endStr,
-        allDay: selectedEvent?.allDay,
+        start: selectedData?.startStr,
+        end: selectedData?.endStr,
+        allDay: selectedData?.allDay,
       });
-      setSelectedEvent({});
+      setSelectedData(null);
     }
   }
 
@@ -102,11 +112,14 @@ export default function Calendar() {
                     primary={event.title}
                     secondary={
                       <Typography>
-                        {formatDate(event.start, {
-                          year: "numeric",
-                          month: "short",
-                          day: "numeric",
-                        })}
+                        {event.start instanceof Date &&
+                        !isNaN(event.start.getTime())
+                          ? formatDate(event.start, {
+                              year: "numeric",
+                              month: "short",
+                              day: "numeric",
+                            })
+                          : "Дата не указана"}
                       </Typography>
                     }
                   />
@@ -162,11 +175,12 @@ export default function Calendar() {
               onSubmit: (event: React.FormEvent<HTMLFormElement>) => {
                 event.preventDefault();
                 const formData = new FormData(event.currentTarget);
-                const eventTitle = Object.fromEntries(
-                  (formData as any).entries()
-                );
+                const eventTitle = Object.fromEntries(formData.entries());
+                console.log(formData);
+                console.log(eventTitle);
+
                 if (eventTitle) {
-                  handleCreateEvent(eventTitle.event);
+                  handleCreateEvent(String(eventTitle.event));
                 }
                 setIsCreateEvent((show) => !show);
               },
@@ -200,7 +214,7 @@ export default function Calendar() {
                 gap: "15px",
               }}
             >
-              <CustomizedButton>Add event</CustomizedButton>
+              <CustomizedButton type="submit">Add</CustomizedButton>
               <CustomizedButton
                 onClick={() => setIsCreateEvent((show) => !show)}
               >
@@ -218,7 +232,9 @@ export default function Calendar() {
             selectMirror={true}
             select={handleDateClick}
             eventClick={handleEventClick}
-            eventsSet={(events) => setCurrentEvents(events)}
+            eventsSet={(events: EventApi[]) => {
+              setCurrentEvents(events);
+            }}
             plugins={[
               dayGridPlugin,
               timeGridPlugin,
@@ -237,7 +253,7 @@ export default function Calendar() {
     </Box>
   );
 }
-const initialEvents = [
+const initialEvents: EventSourceInput = [
   {
     id: "12315",
     title: "All-day event",
