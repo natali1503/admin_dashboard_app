@@ -34,7 +34,7 @@
 2. Перейдите в каталог проекта:
 
    ```bash
-   cd the-wild-oasis
+   cd admin_dashboard_app
    ```
 
 3. Установите зависимости:
