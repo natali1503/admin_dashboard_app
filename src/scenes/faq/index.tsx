@@ -1,12 +1,5 @@
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import {
-  Accordion,
-  AccordionSummary,
-  AccordionDetails,
-  useTheme,
-  Box,
-  Typography,
-} from "@mui/material";
+import { Accordion, AccordionSummary, AccordionDetails, useTheme, Box, Typography } from "@mui/material";
 import { tokens } from "../../theme";
 import { Header } from "../../components/Header";
 import { dataFAQ, Questions } from "../../data/dataFAQ";
@@ -16,22 +9,14 @@ export default function FAQ() {
   const colors = tokens(theme.palette.mode);
   const mode = theme.palette.mode;
   return (
-    <Box padding="20px">
-      <Header title="FAQ" subtitle="Frequently Asked Questions Page" />
+    <Box padding='20px'>
+      <Header title='FAQ' subtitle='Frequently Asked Questions Page' />
       <Box>
-        {dataFAQ.map((el: Questions) => {
+        {dataFAQ.map((el: Questions, i) => {
           return (
-            <Accordion sx={{ backgroundColor: `${colors.primary[400]}` }}>
+            <Accordion sx={{ backgroundColor: `${colors.primary[400]}` }} key={+i}>
               <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                <Typography
-                  color={
-                    mode === "dark"
-                      ? colors.greenAccent[500]
-                      : colors.greenAccent[300]
-                  }
-                  variant="h5"
-                  fontWeight={500}
-                >
+                <Typography color={mode === "dark" ? colors.greenAccent[500] : colors.greenAccent[300]} variant='h5' fontWeight={500}>
                   {el.question}
                 </Typography>
               </AccordionSummary>

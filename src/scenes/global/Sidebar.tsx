@@ -2,7 +2,7 @@ import { Box, IconButton, Typography, useTheme } from "@mui/material";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import { Menu, MenuItem, ProSidebar } from "react-pro-sidebar";
-// import { P } from "react-pro-sidebar";
+import PersonIcon from "@mui/icons-material/Person";
 import { useState } from "react";
 import "react-pro-sidebar/dist/css/styles.css";
 
@@ -31,20 +31,11 @@ function Sidebar() {
       }}
     >
       <ProSidebar collapsed={isCollapsed}>
-        <Menu iconShape="square">
-          <MenuItem
-            onClick={() => setIsCollapsed(!isCollapsed)}
-            icon={isCollapsed ? <MenuOutlinedIcon /> : undefined}
-            style={{ margin: "10px 0 20px 0", color: colors.grey[100] }}
-          >
+        <Menu iconShape='square'>
+          <MenuItem onClick={() => setIsCollapsed(!isCollapsed)} icon={isCollapsed ? <MenuOutlinedIcon /> : undefined} style={{ margin: "10px 0 20px 0", color: colors.grey[100] }}>
             {!isCollapsed && (
-              <Box
-                display="flex"
-                justifyContent="space-between"
-                alignItems="center"
-                ml="15px"
-              >
-                <Typography variant="h3" color={colors.grey[100]}>
+              <Box display='flex' justifyContent='space-between' alignItems='center' ml='15px'>
+                <Typography variant='h3' color={colors.grey[100]}>
                   ADMINIS
                 </Typography>
                 <IconButton onClick={() => setIsCollapsed(!isCollapsed)}>
@@ -54,26 +45,17 @@ function Sidebar() {
             )}
           </MenuItem>
           {!isCollapsed && (
-            <Box mb="25px">
-              <Box display="flex" justifyContent="center" alignItems="center">
-                <img
-                  alt="profile-user"
-                  width="100px"
-                  height="100px"
-                  src={`../../assets/KATE4592.png`}
-                  style={{ cursor: "pointer", borderRadius: "50%" }}
-                />
+            <Box mb='25px'>
+              <Box display='flex' justifyContent='center' alignItems='center'>
+                <Box borderRadius={"50%"} bgcolor={colors.blueAccent[800]} padding={"10px"}>
+                  <PersonIcon sx={{ fontSize: 60 }} />
+                </Box>
               </Box>
-              <Box textAlign="center">
-                <Typography
-                  variant="h2"
-                  color={colors.grey[100]}
-                  fontWeight="bold"
-                  sx={{ m: "10px 0 0 0" }}
-                >
+              <Box textAlign='center'>
+                <Typography variant='h2' color={colors.grey[100]} fontWeight='bold' sx={{ m: "10px 0 0 0" }}>
                   Natalia Sitnikova
                 </Typography>
-                <Typography variant="h5" color={colors.greenAccent[500]}>
+                <Typography variant='h5' color={colors.greenAccent[500]}>
                   Fancy Admin
                 </Typography>
               </Box>
@@ -81,31 +63,10 @@ function Sidebar() {
           )}
 
           <Box paddingLeft={isCollapsed ? undefined : "10%"}>
-            <Item
-              title="Dashboard"
-              to="/"
-              icon={<HomeOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
-            <SidebarItem
-              chapter={menuData.chapter}
-              item={menuData.item}
-              selected={selected}
-              setSelected={setSelected}
-            />
-            <SidebarItem
-              chapter={menuPages.chapter}
-              item={menuPages.item}
-              selected={selected}
-              setSelected={setSelected}
-            />
-            <SidebarItem
-              chapter={menuCharts.chapter}
-              item={menuCharts.item}
-              selected={selected}
-              setSelected={setSelected}
-            />
+            <Item title='Dashboard' to='/' icon={<HomeOutlinedIcon />} selected={selected} setSelected={setSelected} />
+            <SidebarItem chapter={menuData.chapter} item={menuData.item} selected={selected} setSelected={setSelected} />
+            <SidebarItem chapter={menuPages.chapter} item={menuPages.item} selected={selected} setSelected={setSelected} />
+            <SidebarItem chapter={menuCharts.chapter} item={menuCharts.item} selected={selected} setSelected={setSelected} />
           </Box>
         </Menu>
       </ProSidebar>
