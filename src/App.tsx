@@ -1,4 +1,4 @@
-import { HashRouter, Route, Routes } from "react-router-dom";
+import { HashRouter, Navigate, Route, Routes } from "react-router-dom";
 import { CssBaseline, ThemeProvider } from "@mui/material";
 
 import { ColorModeContext, useMode } from "./theme";
@@ -19,34 +19,33 @@ import Bar from "./scenes/bar";
 function App() {
   const [theme, colorMode] = useMode();
   return (
-    <>
-      <HashRouter>
-        <ColorModeContext.Provider value={colorMode}>
-          <ThemeProvider theme={theme}>
-            <CssBaseline />
-            <div className="app">
-              <Sidebar />
-              <main className="content">
-                <Topbar />
-                <Routes>
-                  <Route path="/" element={<Dashboard />} />
-                  <Route path="/team" element={<Team />} />
-                  <Route path="/contacts" element={<Contacts />} />
-                  <Route path="/invoices" element={<Invoices />} />
-                  <Route path="/form" element={<Form />} />
-                  <Route path="/calendar" element={<Calendar />} />
-                  <Route path="/pie" element={<Pie />} />
-                  <Route path="/bar" element={<Bar />} />
-                  <Route path="/line" element={<Line />} />
-                  <Route path="/faq" element={<FAQ />} />
-                  <Route path="/geography" element={<Geography />} />
-                </Routes>
-              </main>
-            </div>
-          </ThemeProvider>
-        </ColorModeContext.Provider>
-      </HashRouter>
-    </>
+    <HashRouter>
+      <ColorModeContext.Provider value={colorMode}>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <div className='app'>
+            <Sidebar />
+            <main className='content'>
+              <Topbar />
+              <Routes>
+                <Route index element={<Navigate replace to='dashboard'></Navigate>}></Route>
+                <Route path='/dashboard' element={<Dashboard />} />
+                <Route path='/team' element={<Team />} />
+                <Route path='/contacts' element={<Contacts />} />
+                <Route path='/invoices' element={<Invoices />} />
+                <Route path='/form' element={<Form />} />
+                <Route path='/calendar' element={<Calendar />} />
+                <Route path='/pie' element={<Pie />} />
+                <Route path='/bar' element={<Bar />} />
+                <Route path='/line' element={<Line />} />
+                <Route path='/faq' element={<FAQ />} />
+                <Route path='/geography' element={<Geography />} />
+              </Routes>
+            </main>
+          </div>
+        </ThemeProvider>
+      </ColorModeContext.Provider>
+    </HashRouter>
   );
 }
 
